@@ -1,0 +1,24 @@
+{
+  "email": {
+    "subject": {
+      "reset-password-email": "Password Reset",
+      "email-verification-email": "Email Verification",
+      "reset-password-email": "Your password has been changed"
+    },
+    "shared": {
+      "hiUser": "Hi __username__"
+    },
+    "emailVerification": {
+      "welcometToSite": "Welcome to __siteName__",
+      "confirmEmail": "Confirm Email"
+    },
+    "resetPassword": {
+      "youHaveRequested": "You have requested to have your password reset for your account at __siteName__",
+      "pleaseVisitThisUrl": "Please visit this url to reset your password:",
+      "ifYouDidnt": "If you didn't make this request, you can ignore this email."
+    },
+    "resetPasswordConfirm": {
+      "thisIsConfirmation": "This is a confirmation that the password for your account has just been changed"
+    }
+  }
+}
