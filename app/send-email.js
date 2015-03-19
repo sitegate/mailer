@@ -6,7 +6,7 @@ var nodemailer = require('nodemailer');
 var emailTemplates = require('email-templates');
 var TEMPLATES_DIR = './templates';
 
-function sendEmail(options, cb) {
+module.exports = function (options, cb) {
   emailTemplates(TEMPLATES_DIR, function (err, template) {
     if (err) {
       return cb(err, null);
@@ -33,11 +33,9 @@ function sendEmail(options, cb) {
         if (err) {
           return cb(err, null);
         }
-
+        
         return cb(null, info.response);
       });
     });
   });
-}
-
-module.exports = sendEmail;
+};

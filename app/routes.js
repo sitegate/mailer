@@ -1,9 +1,7 @@
 'use strict';
 
-var sendEmail = require('./send-email');
-
-module.exports = function (worker) {
-  worker.addMethods({
-    send: sendEmail
+module.exports = function (server) {
+  server.addMethods({
+    send: require('./send-email')
   });
 };
