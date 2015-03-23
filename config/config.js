@@ -9,6 +9,10 @@ var config = {
         pass: process.env.MAILER_PASSWORD || 'MAILER_PASSWORD'
       }
     }
+  },
+  app: {
+    title: 'SiteGate',
+    host: 'https://account.sitegatedev.com:3000'
   }
 };
 

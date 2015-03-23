@@ -24,7 +24,7 @@ module.exports = function (options, cb) {
       var mailOptions = {
         to: options.to,
         from: config.mailer.from,
-        subject: options.subject || i18n.t('email.subject' + options.templateName),
+        subject: options.subject || i18n.t('email.subject.' + options.templateName),
         html: html,
         text: text
       };
