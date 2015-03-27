@@ -2,7 +2,7 @@ extends ../layout.jade
 
 block content
   p= t('email.shared.hiUser', { username: username })
-  p= t('email.resetPassword.youHaveRequested', { siteName: siteName })
+  p= t('email.resetPassword.youHaveRequested', { siteName: app.title })
   p= t('email.resetPassword.pleaseVisitThisUrl')
-  p= url
+  p= app.host + '/reset/' + token
   strong= t('email.resetPassword.ifYouDidnt')

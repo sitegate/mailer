@@ -14,6 +14,7 @@ module.exports = function (options, cb) {
 
     options.locals = options.locals || {};
     options.locals.t = i18n.t;
+    options.app = config.app;
 
     template(options.templateName, options.locals, function (err, html, text) {
       if (err) {
