@@ -1,0 +1,1 @@
+# sitegate-mailer [![Dependency Status](https://david-dm.org/zkochan/sitegate-mailer/status.svg?style=flat)](https://david-dm.org/zkochan/sitegate-mailer) [![Build Status](http://img.shields.io/travis/zkochan/sitegate-mailer.svg?style=flat)](https://travis-ci.org/zkochan/sitegate-mailer)
