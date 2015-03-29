@@ -1,6 +1,6 @@
 'use strict';
 
-var config = require('../config/config');
+var config = require('../config');
 var i18n = require('i18next');
 var nodemailer = require('nodemailer');
 var emailTemplates = require('email-templates');
@@ -14,17 +14,17 @@ module.exports = function (options, cb) {
 
     options.locals = options.locals || {};
     options.locals.t = i18n.t;
-    options.app = config.app;
+    options.app = config.get('app');
 
     template(options.templateName, options.locals, function (err, html, text) {
       if (err) {
         return cb(err, null);
       }
 
-      var smtpTransport = nodemailer.createTransport(config.mailer.options);
+      var smtpTransport = nodemailer.createTransport(config.get('mailer.options'));
       var mailOptions = {
         to: options.to,
-        from: config.mailer.from,
+        from: config.get('mailer.from'),
         subject: options.subject || i18n.t('email.subject.' + options.templateName),
         html: html,
         text: text

@@ -2,7 +2,7 @@
 
 var bo = require('bograch');
 var AmqpTransporter = require('bograch-amqp');
-var config = require('./config/config');
+var config = require('./config');
 var i18n = require('i18next');
 
 // Registering i18n
@@ -12,7 +12,7 @@ i18n.init({
 
 // Initialize Bograch
 bo.use(new AmqpTransporter({
-  amqpURL: config.amqpURL
+  amqpURL: config.get('amqpURL')
 }));
 
 var server = bo.server('amqp', {
