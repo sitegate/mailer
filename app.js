@@ -1,7 +1,7 @@
 'use strict';
 
 var bo = require('bograch');
-var AmqpTransporter = require('bograch-amqp');
+var amqpTransport = require('bograch-amqp');
 var config = require('./config');
 var i18n = require('i18next');
 
@@ -11,15 +11,16 @@ i18n.init({
 });
 
 // Initialize Bograch
-bo.use(new AmqpTransporter({
-  amqpURL: config.get('amqpURL')
-}));
+bo.use(amqpTransport);
 
 var server = bo.server('amqp', {
-  name: 'mailer'
+  name: 'mailer',
+  amqpURL: config.get('amqpURL')
 });
 
 var routes = require('./app/routes');
 routes(server);
+
+server.start();
 
 console.log('Mailer microservice started');
