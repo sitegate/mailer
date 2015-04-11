@@ -1,0 +1,9 @@
+sgmailer:
+  build: .
+  external_links:
+    - sitegate_amqp_1:rabbitmq
+  volumes:
+    - .:/src
+  environment:
+    NODE_ENV: development
+    DEBUG: bograch

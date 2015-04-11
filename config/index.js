@@ -1,5 +1,6 @@
 'use strict';
 
+var util = require('util');
 var convict = require('convict');
 
 var config = convict({
@@ -9,10 +10,26 @@ var config = convict({
     default: 'development',
     env: 'NODE_ENV'
   },
-  amqpURL: {
-    doc: 'AMQP endpoint.',
-    default: 'amqp://guest:guest@localhost:5672',
-    env: 'AMQP_URL'
+  amqp: {
+    login: {
+      doc: 'AMQP login.',
+      default: 'guest'
+    },
+    password: {
+      doc: 'AMQP password.',
+      default: 'guest'
+    },
+    address: {
+      doc: 'AMQP address.',
+      default: 'localhost',
+      env: 'RABBITMQ_PORT_5672_TCP_ADDR'
+    },
+    port: {
+      doc: 'AMQP port.',
+      format: 'port',
+      default: '5672',
+      env: 'RABBITMQ_PORT_5672_TCP_PORT'
+    }
   },
   mailer: {
     from: {
@@ -40,7 +57,16 @@ var config = convict({
 
 // load environment dependent configuration
 var env = config.get('env');
-config.loadFile('./config/env/' + env + '.json');
+config.loadFile(__dirname + '/env/' + env + '.json');
+
+// Adding the calculated values
+config.load({
+  amqpUrl: util.format('amqp://%s:%s@%s:%s',
+                         config.get('amqp.login'),
+                         config.get('amqp.password'),
+                         config.get('amqp.address'),
+                         config.get('amqp.port'))
+});
 
 // perform validation
 config.validate();

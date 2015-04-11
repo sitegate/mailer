@@ -15,7 +15,7 @@ bo.use(amqpTransport);
 
 var server = bo.server('amqp', {
   name: 'mailer',
-  amqpURL: config.get('amqpURL')
+  amqpURL: config.get('amqpUrl')
 });
 
 var routes = require('./app/routes');

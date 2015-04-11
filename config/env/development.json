@@ -1,5 +1,10 @@
 {
-  "amqpURL": "amqp://guest:guest@localhost:5672",
+  "amqp": {
+    "login": "guest",
+    "password": "guest",
+    "address": "localhost",
+    "port": "5672"
+  },
   "mailer": {
     "from": "MAILER_FROM",
     "options": {
