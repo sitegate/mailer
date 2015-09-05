@@ -14,13 +14,12 @@
   },
   "license": "MIT",
   "dependencies": {
-    "bograch": "0.0.18",
-    "bograch-amqp": "0.0.8",
     "convict": "^0.6.1",
     "email-templates": "~1.2.0",
     "i18next": "~1.7.10",
     "jade": "~1.9.2",
     "less": "~1.7.5",
-    "nodemailer": "~1.3.2"
+    "nodemailer": "~1.3.2",
+    "uva-amqp": "^0.4.0"
   }
 }
