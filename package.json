@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/sitegate/sitegate-mailer.git"
+    "url": "git://github.com/sitegate/mailer.git"
   },
   "license": "MIT",
   "dependencies": {
