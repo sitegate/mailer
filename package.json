@@ -2,10 +2,7 @@
   "name": "sitegate-mailer",
   "version": "0.0.1",
   "description": "A SiteGate microservice for sending emails",
-  "main": "app.js",
-  "scripts": {
-    "start": "node app"
-  },
+  "main": "./app/index.js",
   "keywords": [
     "mail",
     "sitegate"
@@ -21,12 +18,10 @@
   },
   "license": "MIT",
   "dependencies": {
-    "convict": "^1.0.1",
     "email-templates": "^2.0.1",
     "i18next": "^1.10.4",
     "jade": "^1.11.0",
     "less": "^2.5.1",
-    "nodemailer": "^1.4.0",
-    "uva-amqp": "^0.4.0"
+    "nodemailer": "^1.4.0"
   }
 }
