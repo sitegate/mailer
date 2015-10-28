@@ -3,31 +3,32 @@
 var i18n = require('i18next');
 var nodemailer = require('nodemailer');
 var emailTemplates = require('email-templates');
-var TEMPLATES_DIR = './templates';
+var path = require('path');
+var templatesDir = path.join(__dirname, '../templates');
 
 module.exports = function(ms) {
   var config = ms.config;
 
-  return function(options, cb) {
-    emailTemplates(TEMPLATES_DIR, function(err, template) {
+  return function(opts, cb) {
+    emailTemplates(templatesDir, function(err, template) {
       if (err) {
         return cb(err, null);
       }
 
-      options.locals = options.locals || {};
-      options.locals.t = i18n.t;
-      options.app = config.get('app');
+      opts.locals = opts.locals || {};
+      opts.locals.t = i18n.t;
+      opts.locals.app = config.app;
 
-      template(options.templateName, options.locals, function(err, html, text) {
+      template(opts.templateName, opts.locals, function(err, html, text) {
         if (err) {
           return cb(err, null);
         }
 
-        var smtpTransport = nodemailer.createTransport(config.get('mailer.options'));
+        var smtpTransport = nodemailer.createTransport(config.mailer.options);
         var mailOptions = {
-          to: options.to,
-          from: config.get('mailer.from'),
-          subject: options.subject || i18n.t('email.subject.' + options.templateName),
+          to: opts.to,
+          from: config.mailer.from,
+          subject: opts.subject || i18n.t('email.subject.' + opts.templateName),
           html: html,
           text: text
         };
