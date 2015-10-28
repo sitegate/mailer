@@ -1,6 +1,6 @@
 {
   "name": "sitegate-mailer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A SiteGate microservice for sending emails",
   "main": "./app/index.js",
   "keywords": [
