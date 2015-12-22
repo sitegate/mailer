@@ -1,5 +1,6 @@
 'use strict';
 
+const debug = require('debug')('sitegate-mailer');
 const i18n = require('i18next');
 const Q = require('q');
 const emailTemplates = Q.denodeify(require('email-templates'));
@@ -34,6 +35,10 @@ module.exports = function(ms) {
         return Q.nfcall(smtpTransport.sendMail.bind(smtpTransport), mailOptions);
       })
       .then(info => cb(null, info.response))
-      .catch(err => cb(err, null));
+      .catch(function(err) {
+        debug('Error during sending email to ' + opts.to);
+        debug(err);
+        cb(err, null);
+      });
   };
 };
