@@ -1,6 +1,6 @@
 'use strict';
 
-const debug = require('debug')('sitegate-mailer');
+const debug = require('debug')('sitegate:mailer');
 const i18n = require('i18next');
 const Q = require('q');
 const emailTemplates = Q.denodeify(require('email-templates'));

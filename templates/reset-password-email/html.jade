@@ -4,5 +4,5 @@ block content
   p= t('email.shared.hiUser', { username: username })
   p= t('email.resetPassword.youHaveRequested', { siteName: app.title })
   p= t('email.resetPassword.pleaseVisitThisUrl')
-  p= app.host + '/reset/' + token
+  p= app.origin + '/reset/' + token
   strong= t('email.resetPassword.ifYouDidnt')

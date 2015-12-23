@@ -3,4 +3,4 @@ extends ../layout.jade
 block content
   h1= t("email.shared.hiUser", { username: username })
   p= t("email.emailVerification.welcometToSite", { siteName: app.title })
-  a(href = app.host + '/verify-email/' + token)= t("email.emailVerification.confirmEmail")
+  a(href = app.origin + '/verify-email/' + token)= t("email.emailVerification.confirmEmail")
