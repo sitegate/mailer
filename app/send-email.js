@@ -16,10 +16,10 @@ module.exports = function(ms, opts, next) {
   ms.method({
     name: 'sendEmail',
     config: {
-      validate: joi.object().keys({
+      validate: {
         templateName: joi.string().required(),
         to: joi.string().required(),
-      }),
+      },
     },
     handler(params, cb) {
       emailTemplates(templatesDir)

@@ -1,13 +1,13 @@
 'use strict'
-
 require('./app') //i18n configuration
+const config = require('./config')
 const jimbo = require('jimbo')
 
 let server = new jimbo.Server()
 
 server.connection({
   channel: 'sitegate-mailer',
-  url: 'amqp://guest:guest@localhost:5672',
+  url: config.get('amqpURI'),
 })
 
 server.register([
