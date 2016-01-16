@@ -1,17 +1,14 @@
-'use strict';
-
+'use strict'
 const joi = require('joi')
 const debug = require('debug')('sitegate-mailer')
 const i18n = require('i18next')
 const Q = require('q')
 const emailTemplates = Q.denodeify(require('email-templates'))
-const nodemailer = require('nodemailer')
-const mg = require('nodemailer-mailgun-transport')
 const path = require('path')
 const templatesDir = path.join(__dirname, '../templates')
 
-module.exports = function(ms, opts, next) {
-  let config = ms.config
+module.exports = function(ms, opts) {
+  let smtpTransport = ms.plugins['smtp-transport']
 
   ms.method({
     name: 'sendEmail',
@@ -26,17 +23,16 @@ module.exports = function(ms, opts, next) {
         .then(function(template) {
           params.locals = params.locals || {};
           params.locals.t = i18n.t;
-          params.locals.app = config.app;
+          params.locals.app = opts.app;
 
           return Q.nfcall(template, params.templateName, params.locals);
         })
         .then(function(html, text) {
-          let smtpTransport = nodemailer
-            .createTransport(mg(config.mailer.options));
           let mailOptions = {
             to: params.to,
-            from: config.mailer.from,
-            subject: params.subject || i18n.t('email.subject.' + params.templateName),
+            from: opts.from,
+            subject: params.subject ||
+              i18n.t('email.subject.' + params.templateName),
             html: html,
             text: text,
           };
@@ -51,10 +47,9 @@ module.exports = function(ms, opts, next) {
         });
     },
   })
-
-  next()
 }
 
 module.exports.attributes = {
   name: 'send-email',
+  dependencies: 'smtp-transport',
 }

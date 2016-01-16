@@ -11,6 +11,12 @@ let config = convict({
     default: 'development',
     env: 'NODE_ENV',
   },
+  from: {
+    default: 'no-reply@example.com',
+  },
+  app: {
+    default: 'sitegate',
+  },
   amqp: {
     login: {
       doc: 'AMQP login.',

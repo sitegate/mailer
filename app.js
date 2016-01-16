@@ -13,6 +13,14 @@ server.connection({
 server.register([
   {
     register: require('./app/send-email'),
+    options: config.get('mailer.options'),
+  },
+  {
+    register: require('./app/send-email'),
+    options: {
+      app: config.get('app'),
+      from: config.get('from'),
+    },
   },
 ], err => {
   if (err) throw err
