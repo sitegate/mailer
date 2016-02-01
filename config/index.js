@@ -14,6 +14,32 @@ let config = convict({
   from: {
     default: 'no-reply@example.com',
   },
+  mailer: {
+    options: {
+      service: {
+        default: '',
+        env: 'MAILER_SERVICE_PROVIDER',
+      },
+      auth: {
+        user: {
+          default: '',
+          env: 'MAILER_EMAIL_ID',
+        },
+        pass: {
+          default: '',
+          env: 'MAILER_PASSWORD',
+        },
+        api_key: {
+          default: '',
+          env: 'MAILER_API_KEY',
+        },
+        domain: {
+          default: '',
+          env: 'MAILER_DOMAIN',
+        },
+      },
+    },
+  },
   app: {
     default: 'sitegate',
   },

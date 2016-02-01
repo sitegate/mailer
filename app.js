@@ -3,16 +3,16 @@ require('./app') //i18n configuration
 const config = require('./config')
 const jimbo = require('jimbo')
 
-let server = new jimbo.Server()
+let server = jimbo()
 
 server.connection({
   channel: 'sitegate-mailer',
-  url: config.get('amqpURI'),
+  amqpURL: config.get('amqpURI'),
 })
 
 server.register([
   {
-    register: require('./app/send-email'),
+    register: require('./app/smtp-transport'),
     options: config.get('mailer.options'),
   },
   {
@@ -22,8 +22,6 @@ server.register([
       from: config.get('from'),
     },
   },
-], err => {
-  if (err) throw err
-
-  server.start(() => console.log('Service started'))
-})
+])
+.then(() => server.start(() => console.log('Service started')))
+.catch(err => {throw err})

@@ -7,7 +7,7 @@ require('../app/index') //i18n configuration
 
 describe('sendEmail', function() {
   it('should send email verification email', function() {
-    let server = new jimbo.Server()
+    let server = jimbo()
     return server.register([
       {
         register: plugiator.create('smtp-transport', (server, opts) => {

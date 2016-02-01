@@ -10,7 +10,7 @@ const templatesDir = path.join(__dirname, '../templates')
 module.exports = function(ms, opts) {
   if (!opts.from) throw new Error('opts.from is required')
 
-  let smtpTransport = ms.plugins['smtp-transport']
+  let smtpTransport = ms.plugins.smtpTransport
 
   ms.method({
     name: 'sendEmail',
